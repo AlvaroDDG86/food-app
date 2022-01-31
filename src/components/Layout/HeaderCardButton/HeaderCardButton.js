@@ -3,7 +3,7 @@ import classes from './HeaderCardButton.module.css'
 
 const HeaderCardButton = (props) => {
   return (
-    <button className={classes.button}>
+    <button className={classes.button} onClick={props.onShowCart}>
         <span className={classes.icon}><CartIcon /></span>
         <span>Cart</span>
         <span className={classes.badge}>2</span>
