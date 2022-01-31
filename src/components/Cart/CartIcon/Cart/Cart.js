@@ -12,7 +12,7 @@ const Cart = (props) => {
         </li>
     })
     return (
-        <Modal>
+        <Modal onClose={props.onHideCart}>
             <ul className={classes['cart-items']}>
                 {cartItems}
             </ul>

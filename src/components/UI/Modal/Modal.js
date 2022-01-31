@@ -3,7 +3,7 @@ import Card from '../Card/Card'
 import classes from './Modal.module.css'
 
 const Backdrop = (props) => {
-    return <div className={classes.backdrop} onClose={props.onClose}></div>
+    return <div className={classes.backdrop} onClick={props.onClose}></div>
 }
 
 const ModalOverlay = (props) => {
@@ -22,7 +22,7 @@ const Modal = (props) => {
         <Card>
             {
                 ReactDom.createPortal(
-                    <Backdrop />,
+                    <Backdrop onClose={props.onClose} />,
                     document.getElementById('backdrop')
                 )
             }
