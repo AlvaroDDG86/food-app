@@ -1,6 +1,8 @@
 import classes from "./AvailableMeals.module.css";
 import Card from "../../UI/Card/Card";
 import MealItem from "../MealItem/MealItem";
+import CartContext from '../../../store/card-context'
+import { useContext } from "react";
 const DUMMY_MEALS = [
   {
     id: "m1",
@@ -29,6 +31,15 @@ const DUMMY_MEALS = [
 ];
 
 const AvailableMeals = () => {
+  const cartContext = useContext(CartContext)
+  const addItemHandler = (items) => {
+    cartContext.addItem({
+      id: "m4",
+      name: "Green Bowl",
+      description: "Healthy...and green...",
+      price: 18.99,
+    })
+  }
   return (
     <section className={classes.meals}>
       <Card>
@@ -41,6 +52,7 @@ const AvailableMeals = () => {
                 price={meal.price}
                 id={meal.id}
                 key={meal.id}
+                onAddItem={addItemHandler}
               />
             );
           })}
