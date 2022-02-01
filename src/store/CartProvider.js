@@ -10,22 +10,55 @@ const defaultCartState = {
 const cartReducer = (state, action) => {
   switch (action.type) {
     case "ADD_ITEM":
-      const itemsUpdated = state.items.concat(action.item);
+      let itemsUpdated = [];
+      const indexItem = state.items.findIndex(
+        (item) => item.id === action.item.id
+      );
+      if (indexItem > -1) {
+        const currentItem = {
+          ...state.items[indexItem],
+          amount: state.items[indexItem].amount + action.item.amount,
+        };
+        itemsUpdated = [...state.items];
+        itemsUpdated[indexItem] = currentItem;
+      } else {
+        itemsUpdated = state.items.concat(action.item);
+      }
       return {
         items: itemsUpdated,
         totalAmount: itemsUpdated
           .reduce((prev, current) => prev + current.amount * current.price, 0)
           .toFixed(2),
-        totalItems: itemsUpdated.reduce((prev, current) => prev + current.amount, 0),
+        totalItems: itemsUpdated.reduce(
+          (prev, current) => prev + current.amount,
+          0
+        ),
       };
     case "DELETE_ITEM":
-      const itemsPrevalent = state.items.filter(item => item.id !== action.id);
+      const indexItemDelete = state.items.findIndex(
+        (item) => item.id === action.id
+      );
+      const updatedItem = {
+        ...state.items[indexItemDelete],
+        amount: --state.items[indexItemDelete].amount,
+      };
+      const itemsPrevalent = [
+          ...state.items
+      ]
+      if (updatedItem.amount === 0) {
+          itemsPrevalent.splice(indexItemDelete, 1)
+      } else {
+          itemsPrevalent[indexItemDelete] = updatedItem
+      }
       return {
         items: itemsPrevalent,
         totalAmount: itemsPrevalent
           .reduce((prev, current) => prev + current.amount * current.price, 0)
           .toFixed(2),
-        totalItems: itemsPrevalent.reduce((prev, current) => prev + current.amount, 0),
+        totalItems: itemsPrevalent.reduce(
+          (prev, current) => prev + current.amount,
+          0
+        ),
       };
     default:
       return defaultCartState;
