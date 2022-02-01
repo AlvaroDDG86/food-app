@@ -4,11 +4,14 @@ const CartItem = (props) => {
   return (
     <li className={classes["cart-item"]}>
       <div>
-        <span className={classes.name}>{props.amount}x</span>
-        <span className={classes.name}>{props.name}</span>
+        <div className={classes.name}>{props.name}</div>
+        <span className={classes.amount}>{props.amount}x</span>
         <span className={classes.price}>(${props.price})</span>
       </div>
-      <button onClick={_ => props.onRemoveItem(props.id)}>X</button>
+      <div className={classes.actions}>
+        <button onClick={props.onAddItem}>+</button>
+        <button onClick={props.onRemoveItem}>-</button>
+      </div>
     </li>
   );
 };

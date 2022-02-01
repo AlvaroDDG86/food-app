@@ -38,26 +38,11 @@ const CartProvider = (props) => {
     defaultCartState
   );
 
-  // const [items, setItems] = useState([])
-  // const [totalAmount, setTotalAmount] = useState(0)
-  // const [totalItems, setTotalItems] = useState(0)
-
-  // useEffect(() => {
-  //     setTotalAmount(items.reduce((prev, current) => prev + (current.amount * current.price), 0).toFixed(2))
-  //     setTotalItems(items.reduce((prev, current) => prev + (current.amount), 0))
-  // }, [items])
-
   const addItemHandler = (item) => {
     dispatchCartAction({
       type: "ADD_ITEM",
       item,
     });
-    // const index = items.findIndex(meal => meal.id === item.id)
-    // if (index > -1) {
-
-    // } else {
-    //     setItems(prev => [...prev, item ])
-    // }
   };
 
   const removeItemHandler = (id) => {
@@ -65,7 +50,6 @@ const CartProvider = (props) => {
       type: "DELETE_ITEM",
       id,
     });
-    // setItems(prev => prev.filter(current => current.id !== id))
   };
 
   return (
