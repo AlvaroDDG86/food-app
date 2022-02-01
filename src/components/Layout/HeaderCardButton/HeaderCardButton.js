@@ -11,7 +11,7 @@ const HeaderCardButton = (props) => {
         <CartIcon />
       </span>
       <span>Cart</span>
-      <span className={classes.badge}>{cartContext.totalAmount}</span>
+      <span className={classes.badge}>{cartContext.totalItems}</span>
     </button>
   );
 };
