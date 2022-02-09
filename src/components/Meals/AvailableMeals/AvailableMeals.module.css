@@ -22,3 +22,15 @@
     transform: translateY(0);
   }
 }
+
+.loader {
+  font-size: 3em;
+  color: white;
+  text-align: center;
+}
+
+.error {
+  font-size: 3em;
+  color: red;
+  text-align: center;
+}
